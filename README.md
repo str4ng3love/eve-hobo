@@ -11,3 +11,8 @@ App aims to scan Eve Online markets for items suitable for reprocessing.
 
 3. Install Flask package by running: 
 > pip install Flask
+
+### Running server
+
+You can start developement server with :
+> flask --app app run
