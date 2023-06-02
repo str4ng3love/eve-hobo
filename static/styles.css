@@ -29,6 +29,7 @@ header nav {
   justify-content: space-around;
   padding: 1rem;
   box-shadow: 0rem 0rem 1rem var(--dark);
+
 }
 header nav a {
   font-weight: bold;
@@ -36,8 +37,8 @@ header nav a {
   transition: all 200ms;
 }
 header nav a:hover {
-  background-color: var(--dark);
-  color: var(--light);
+    background-color: var(--dark);
+    color: var(--light);
 }
 footer {
   position: absolute;
@@ -59,3 +60,4 @@ footer div {
     margin-top: 2rem;
   padding: 1rem;
 }
+

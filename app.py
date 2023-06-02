@@ -6,11 +6,8 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    tritSell = requests.get('https://esi.evetech.net/latest/markets/10000002/orders/?datasource=tranquility&order_type=sell&page=1&type_id=34')
-    headers = tritSell.headers
-    
-    # cenaTrit = json.loads(tritSell.text)
-    # print(cenaTrit[2]["price"])
+ 
+ 
     return render_template('index.html')
 
 @app.route('/about')
