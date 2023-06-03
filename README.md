@@ -9,7 +9,7 @@ App aims to scan Eve Online markets for items suitable for reprocessing.
 > 1. py -3 -m venv .venv
 > 2. .venv\Scripts\activate
 
-3. Install Flask package by running: 
+3. Install packages by navigating to project folder and running:
 > pip install -r requirements.txt
 
 ### Running server
