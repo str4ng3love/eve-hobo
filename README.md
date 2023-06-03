@@ -10,7 +10,7 @@ App aims to scan Eve Online markets for items suitable for reprocessing.
 > 2. .venv\Scripts\activate
 
 3. Install Flask package by running: 
-> pip install Flask
+> pip install -r requirements.txt
 
 ### Running server
 
