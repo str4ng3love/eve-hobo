@@ -1,7 +1,7 @@
 import asyncio
 import requests
 import json
-from controllers.get_orders import  get_buy_orders
+from controllers.get_orders import  get_buy_orders, get_sell_orders
 from flask import Flask, request, jsonify
 from flask import render_template
 from prisma import Prisma, register
@@ -43,7 +43,12 @@ def create():
     return '<p>new hobo awakens</p>'
    
 
-@app.route('/api/get-prices', methods=['GET', 'POST'])
-def getPrices():
+@app.route('/api/get-buy-prices', methods=['GET', 'POST'])
+def getBuyOrders():
     buyOrders =  get_buy_orders()
     return jsonify(buyOrders)
+
+@app.route('/api/get-sell-prices', methods=['GET', 'POST'])
+def getSellOrders():
+    sellOrders =  get_sell_orders()
+    return jsonify(sellOrders)

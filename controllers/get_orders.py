@@ -1,20 +1,11 @@
 import requests
 
-
-def get_buy_orders():
-    orders = get_pages("buy")
-    concatedOrders = concat(orders)
-    jita_orders = list(filter(filter_jita44, concatedOrders))
-    return jita_orders
-
-
 def filter_jita44(order):
     stationId = 60003760
     if order['location_id'] == stationId:
         return True
     else:
         return False
-
 
 def concat(listOfLists: list):
     result = []
@@ -37,9 +28,7 @@ def get_pages(order_type):
     try:
         while (pagesAmount > 0):
             paginatedUrl = url+'&page='+str(pagesAmount)
-            print(paginatedUrl)
             page = requests.get(paginatedUrl)
-            print(page.status_code)
             page = page.json()
             pages.append(page)
             pagesAmount = pagesAmount - 1
@@ -49,6 +38,12 @@ def get_pages(order_type):
         print("Error occurred during API request:", e)
         return None
     return pages
+
+def get_buy_orders():
+    orders = get_pages("buy")
+    concatedOrders = concat(orders)
+    jita_orders = list(filter(filter_jita44, concatedOrders))
+    return jita_orders
 
 
 def get_sell_orders():
