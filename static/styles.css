@@ -29,7 +29,6 @@ header nav {
   justify-content: space-around;
   padding: 1rem;
   box-shadow: 0rem 0rem 1rem var(--dark);
-
 }
 header nav a {
   font-weight: bold;
@@ -37,8 +36,8 @@ header nav a {
   transition: all 200ms;
 }
 header nav a:hover {
-    background-color: var(--dark);
-    color: var(--light);
+  background-color: var(--dark);
+  color: var(--light);
 }
 footer {
   position: absolute;
@@ -53,11 +52,28 @@ footer div {
   color: white;
   padding: 1rem;
 }
-.heading-large {
-    font-size: 2rem;
-    text-align: center;
-    margin: 0;
-    margin-top: 2rem;
+.lg {
+  font-size: 2rem;
+}
+.md {
+  font-size: 1.75rem;
+}
+.sm {
+  font-size: 1.5rem;
+}
+.heading {
+  font-size: 2rem;
+  text-align: center;
+  margin: 0;
+  margin-top: 2rem;
   padding: 1rem;
 }
-
+.salvager-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.salvager {
+  width: 80%;
+  
+}

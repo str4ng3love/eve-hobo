@@ -1,23 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" href="static/styles.css">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Salvager</title>
-</head>
-<body>
-    <header>
-        <nav>
-            <a class="logo" href="/">Eve Hobo</a>
-            <a href="/salvager">Salvager</a>
-            <a href="/about">About</a>
-        </nav>
-    </header> 
-    <main>
-        {% if item %}
-        <p>{{item}}</p>
-    </main>
-</body>
-</html>
+{% extends 'layout.html' %} 
+{% block content %}
+<h2 class="heading md">Salvager</h2>
+{% endblock %}
+
