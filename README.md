@@ -5,7 +5,8 @@ App aims to scan Eve Online markets for items suitable for reprocessing.
 
 1. Instal Python
 2. Open your terminal and navigate to a folder in which you wish to install the app.
-3. Run git clone https://github.com/str4ng3love/eve-hobo
+3. Clone the repo by running:
+> git clone https://github.com/str4ng3love/eve-hobo
 4. Navigate to repo folder with your terminal.
 5. Create virtual environment by running :
 
