@@ -1,0 +1,107 @@
+[
+  {
+    "typeID": 18,
+    "materialTypeID": 34,
+    "quantity": 175
+  },
+  {
+    "typeID": 18,
+    "materialTypeID": 36,
+    "quantity": 70
+  },
+  {
+    "typeID": 19,
+    "materialTypeID": 34,
+    "quantity": 48000
+  },
+  {
+    "typeID": 19,
+    "materialTypeID": 37,
+    "quantity": 1000
+  },
+  {
+    "typeID": 19,
+    "materialTypeID": 38,
+    "quantity": 160
+  },
+  {
+    "typeID": 19,
+    "materialTypeID": 39,
+    "quantity": 80
+  },
+  {
+    "typeID": 19,
+    "materialTypeID": 40,
+    "quantity": 40
+  },
+  {
+    "typeID": 20,
+    "materialTypeID": 36,
+    "quantity": 60
+  },
+  {
+    "typeID": 20,
+    "materialTypeID": 37,
+    "quantity": 120
+  },
+  {
+    "typeID": 21,
+    "materialTypeID": 35,
+    "quantity": 450
+  },
+  {
+    "typeID": 21,
+    "materialTypeID": 38,
+    "quantity": 120
+  },
+  {
+    "typeID": 22,
+    "materialTypeID": 35,
+    "quantity": 3200
+  },
+  {
+    "typeID": 22,
+    "materialTypeID": 36,
+    "quantity": 1200
+  },
+  {
+    "typeID": 22,
+    "materialTypeID": 40,
+    "quantity": 120
+  },
+  {
+    "typeID": 29,
+    "materialTypeID": 34,
+    "quantity": 4096
+  },
+  {
+    "typeID": 29,
+    "materialTypeID": 35,
+    "quantity": 1024
+  },
+  {
+    "typeID": 29,
+    "materialTypeID": 36,
+    "quantity": 256
+  },
+  {
+    "typeID": 29,
+    "materialTypeID": 37,
+    "quantity": 64
+  },
+  {
+    "typeID": 29,
+    "materialTypeID": 38,
+    "quantity": 16
+  },
+  {
+    "typeID": 29,
+    "materialTypeID": 39,
+    "quantity": 4
+  },
+  {
+    "typeID": 29,
+    "materialTypeID": 40,
+    "quantity": 1
+  }
+]

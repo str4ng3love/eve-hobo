@@ -52,3 +52,6 @@ def getBuyOrders():
 def getSellOrders():
     sellOrders =  get_sell_orders()
     return jsonify(sellOrders)
+@app.route('/siema')
+def pozdro():
+    return '<p>siemanko, servus</p>'
