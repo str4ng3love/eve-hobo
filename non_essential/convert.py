@@ -19,7 +19,7 @@ with open('mini.json') as json_file:
             result.append(newEntry)
             ri+=1
 
-print(result)
 
-# with open('IndustryTypeMaterials.json', 'w') as f:
-#     json.dump(result, f, indent=2)
+
+with open('IndustryTypeMaterials.json', 'w') as f:
+    json.dump(result, f, indent=2)

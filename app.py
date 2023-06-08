@@ -10,37 +10,20 @@ app = Flask(__name__)
 prisma = Prisma()
 from prisma.models import Item
 
-db = Prisma(auto_register=True)
-async def main() -> None:
-    await db.connect()
-
-    item = await Item.prisma().create(
-        data={
-            'name':'zenon',
-            'typeId':12038
-        }
-    )
-    await db.disconnect()
-
-    
 @app.route("/")
 def index():
-    # asyncio.run(main())
     title = 'Eve Hobo'
     return render_template('layout.html', title=title)
 
 @app.route('/about')
 def about():
 
-    return render_template('/about.html', title='Eve HObo | About')
+    return render_template('/about.html', title='Eve Hobo | About')
 @app.route('/salvager')
 def salvager():
 
-    return render_template('salvage.html', title='Eve HObo | Salvager')
+    return render_template('salvage.html', title='Eve Hobo | Salvager')
 
-@app.route('/hobo', methods=['GET', 'POST'])
-def create():
-    return '<p>new hobo awakens</p>'
    
 
 @app.route('/api/get-buy-prices', methods=['GET', 'POST'])
@@ -52,6 +35,3 @@ def getBuyOrders():
 def getSellOrders():
     sellOrders =  get_sell_orders()
     return jsonify(sellOrders)
-@app.route('/siema')
-def pozdro():
-    return '<p>siemanko, servus</p>'

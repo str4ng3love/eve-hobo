@@ -12,7 +12,6 @@ def concat(listOfLists: list):
     for l in listOfLists:
         if isinstance(l, list):
             result = result + l
-    print(len(result))
     return result
 
 
@@ -23,7 +22,6 @@ def get_pages(order_type):
     resp = requests.get(url)
 
     pagesAmount = int(resp.headers['X-Pages'])
-    print(pagesAmount)
     pages = []
     try:
         while (pagesAmount > 0):
