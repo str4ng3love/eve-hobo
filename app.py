@@ -1,14 +1,11 @@
-import asyncio
-import requests
-import json
-from controllers.get_orders import  get_buy_orders, get_sell_orders
+
+from controllers.get_orders import  get_buy_orders, get_sell_orders, get1pageBuy
+from controllers.update_records import update_buy_orders
+from controllers.get_records import get_orders
 from flask import Flask, request, jsonify
 from flask import render_template
-from prisma import Prisma, register
-from prisma.models import Item
 app = Flask(__name__)
-prisma = Prisma()
-from prisma.models import Item
+
 
 @app.route("/")
 def index():
@@ -26,12 +23,25 @@ def salvager():
 
    
 
-@app.route('/api/get-buy-prices', methods=['GET', 'POST'])
+@app.route('/api/get-buy-orders', methods=['GET', 'POST'])
 def getBuyOrders():
     buyOrders =  get_buy_orders()
-    return jsonify(buyOrders)
+    result = update_buy_orders(buyOrders)
+    return jsonify(result)
 
-@app.route('/api/get-sell-prices', methods=['GET', 'POST'])
+@app.route('/api/get-sell-orders', methods=['GET', 'POST'])
 def getSellOrders():
     sellOrders =  get_sell_orders()
     return jsonify(sellOrders)
+
+@app.route('/api/test/get-buy-and-filter')
+def main():
+    orders = get1pageBuy()
+
+    return jsonify(orders)
+@app.route('/api/get-orders', methods=['GET', 'POST'])
+def getOrders():
+    
+    results = get_orders()
+    
+    return results
