@@ -15,7 +15,7 @@ App aims to scan Eve Online markets for items suitable for reprocessing.
 
 6. Install packages by running:
 > pip install -r requirements.txt
-> prisma generate
+
 
 ### Running server
 
