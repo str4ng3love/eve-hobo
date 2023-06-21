@@ -44,16 +44,3 @@ def get_sell_orders():
     for l in listOfSameTypeOrders:
         sortByPriceAsc(l)
     return listOfSameTypeOrders
-
-
-def get1pageBuy():
-    url = 'https://esi.evetech.net/latest/markets/10000002/orders/?datasource=tranquility&order_type=buy&page=1'
-
-    resp = requests.get(url)
-    data = resp.json()
-    jitaOrders = list(filter(filter_jita44, data))
-    sortedOrders = sortByTypeID(jitaOrders)
-    listOfSameTypeOrders = concatSameTypeIDs(sortedOrders)
-
-    result = listOfSameTypeOrders
-    return result

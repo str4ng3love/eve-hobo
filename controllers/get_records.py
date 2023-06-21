@@ -8,7 +8,7 @@ result = []
 def get_orders():
 
     
-    orders = list(collection_name.find({}, {"name":1, "_id": 0, "buy_orders": 1}))
+    orders = list(collection_name.find({}, {"name":1, "_id": 0, "sell_orders": 1, "buy_orders": 1, "reprocess": 1}))
   
 
     return orders
