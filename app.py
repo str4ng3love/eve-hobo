@@ -1,11 +1,11 @@
 
-from controllers.get_orders import get_buy_orders, get_sell_orders
-from controllers.update_records import update_buy_orders, update_sell_orders
-from controllers.get_records import get_orders
+
+from controllers.get_records import get_orders_blob
+from routes.api_routes import api
 from flask import Flask, jsonify
 from flask import render_template
 app = Flask(__name__)
-
+app.register_blueprint(api, url_prefix='/api')
 
 @app.route("/")
 def index():
@@ -31,27 +31,11 @@ def buy_orders():
     return render_template('buy_orders.html', title='Eve Hobo | Buy Orders')
 
 
-@app.route('/api/get-buy-orders', methods=['GET', 'POST'])
-def getBuyOrders():
-    buyOrders = get_buy_orders()
-    result = update_buy_orders(buyOrders)
-    print('Done updating db.')
-    return jsonify({"modified": result})
-
-
-@app.route('/api/get-sell-orders', methods=['GET', 'POST'])
-def getSellOrders():
-    sellOrders = get_sell_orders()
-    result = update_sell_orders(sellOrders)
-    print('Done updating db.')
-    return jsonify({"modified": result})
-
-@app.route('/api/get-orders', methods=['GET', 'POST'])
-def getOrders():
-
-    results = get_orders()
-
-    return results
-
 
 # testing
+
+@app.route('/test/blob-read')
+def testingBlobRead():
+
+    buyOrdersBlob = get_orders_blob("buy_orders")
+    return jsonify(buyOrdersBlob)
