@@ -1,4 +1,6 @@
-
+import time
+import datetime 
+from datetime import timedelta
 def filter_jita44(order):
     stationId = 60003760
     if order['location_id'] == stationId:
@@ -46,7 +48,27 @@ def sortByTypeID(orders:list):
 
     return orders
 
+def timeSinceInput(timeInput:str, evalValue:int = None ):
+    """
+    Takes ISO formated date and returns difference since datetime.datetime.now() in 'X days, X hours, X minutes, X secs.
+    Optional: evalValue takes a value in minutes, and checks whether specified amount have passed since timeInput.
+    """
+    now = datetime.datetime.now()
+    timeVar = datetime.datetime.fromisoformat(timeInput)
+    diff = now - timeVar
+    days, seconds = diff.days, diff.seconds
+    hours = days * 24 + seconds // 3600
+    minutes = (seconds % 3600) // 60
+    seconds = minutes % 60
+    if evalValue !=None:
 
+        if evalValue * 60 < diff.seconds:
+            evaluation = True
+        else:
+            evaluation = False
+        return {'time':'{} days, {} hours, {} minutes, {} seconds '.format(days, hours, minutes, hours), "evaluation": evaluation}
+    else:
+        return {'time':'{} days, {} hours, {} minutes, {} seconds '.format(days, hours, minutes, hours)}
 # def concatSameTypeIDs(orders):
 #     sortedOrders = []
 #     sortedIndex = 0
