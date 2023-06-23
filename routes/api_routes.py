@@ -1,11 +1,12 @@
 
 from flask import Blueprint, jsonify, request
+from globals import getState ,setStateFalse ,setStateTrue
 from utils.helpers import timeSinceInput
 from controllers.get_orders import get_pages
 from controllers.get_records import get_orders_blob, get_TEL_buy_save, get_TEL_sell_save
 from controllers.update_records import update_orders_blob
 api = Blueprint('api', __name__)
-
+globals()['isRunning'] = False
 @api.route("/")
 def showRoutes():
     routes = [
@@ -49,20 +50,31 @@ def showRoutes():
 @api.route('/esi-update-buy-orders', methods=['GET', 'POST'])
 def updateBuyOrders():
     if request.method == 'GET':
-        isRunning = globals()["isRunning"]
+        isRunning = getState()
+        
         if isRunning == True:
             return "DB is updating, please wait..."
         else:
-            globals()['isRunning'] = True
+            
+            setStateTrue()
             limit = 30
             time = get_TEL_buy_save()
-            timediff = timeSinceInput(time, limit)
-            if timediff['evaluation'] == False:
-                return "Too early to update, "+limit+" minutes must pass since last update. Last update was "+timediff['time']+ ' ago.'
-            buyOrders = get_pages()
-            result = update_orders_blob(buyOrders, "buy_orders")
-            globals()['isRunning'] = False
-        return result
+            if "DB" in time:
+                buyOrders = get_pages("buy")
+                result = update_orders_blob(buyOrders, "buy_orders")
+                setStateFalse()
+                return result
+            else:
+                timediff = timeSinceInput(time, limit)
+                if timediff['evaluation'] == False:
+                    setStateFalse()
+                    return jsonify("Too early to update, "+str(limit)+" minutes must pass since last update. Last update was "+timediff['time']+ ' ago.')
+                else:
+                    buyOrders = get_pages("buy")
+                    result = update_orders_blob(buyOrders, "buy_orders")
+                    setStateFalse()
+                    return result
+        
     else:
         return "Bad request!", 401
 
@@ -70,20 +82,28 @@ def updateBuyOrders():
 @api.route('/esi-update-sell-orders', methods=['GET', 'POST'])
 def updateSellOrders():
     if request.method == 'GET':
-        isRunning = globals()["isRunning"]
+        isRunning = getState()
         if isRunning == True:
             return "DB is updating, please wait..."
         else:
-            globals()['isRunning'] = True
+            setStateTrue()
             limit = 30
             time = get_TEL_sell_save()
-            timediff = timeSinceInput(time, limit)
-            if timediff['evaluation'] == False:
-                return "Too early to update, "+limit+" minutes must pass since last update. Last update was "+timediff['time']+ ' ago.'
-            sellOrders = get_pages()
-            result = update_orders_blob(sellOrders, "sell_orders")
-            globals()['isRunning'] = False
-        return result
+            if "DB" in time:
+                sellOrders = get_pages("sell")
+                result = update_orders_blob(sellOrders, "sell_orders")
+                setStateFalse()
+                return result
+            else:
+                timediff = timeSinceInput(time, limit)
+                if timediff['evaluation'] == False:
+                    setStateFalse()
+                    return jsonify("Too early to update, "+str(limit)+" minutes must pass since last update. Last update was "+timediff['time']+ ' ago.')
+                else:
+                    sellOrders = get_pages("sell")
+                    result = update_orders_blob(sellOrders, "sell_orders")
+                    setStateFalse()
+                    return result
     else:
         return "Bad request!", 401
 
