@@ -15,7 +15,7 @@ def update_orders_blob(orders:list, orders_type:str):
     """
   
     if isinstance(orders, list) and isinstance(orders_type, str):
-      cursor1 = collection_name2.delete_many({orders_type:{"$ne":"null"}})
+      cursor1 = collection_name2.delete_many({orders_type: {"$exists": True}})
       print("Deleted " + str(cursor1.deleted_count) +" db entries...")
       print('Updating '+orders_type+' blob...')
       inserted = []
