@@ -1,7 +1,7 @@
+from typing import Any
 import requests
 
 import time
-
 
 
 def get_pages(orders_type:str):

@@ -28,20 +28,24 @@ def get_orders_blob(orders_type:str):
     """
     orders_type: String defining type of orders to download from DB. Must be either "buy_orders" or "sell_orders".
     """
-    count = collection_name2.count_documents({orders_type:{"$ne":"null"}})
-    print("Attempting to download "+ str(count) +" documents from database...")
-    start_time = time.time()
-    orders = list(collection_name2.find({orders_type:{"$ne":"null"}}, {"_id": 0}))
-    print('Documents downloaded in %s seconds.' % (time.time() - start_time))
-    
-    return orders
-
+    count = collection_name2.count_documents({orders_type: {"$exists": True}})
+    if count > 0:
+        print("Attempting to download "+ str(count) +" documents from database...")
+        start_time = time.time()
+        orders = list(collection_name2.find({orders_type: {"$exists": True}}, {"_id": 0}))
+        print('Documents downloaded in %s seconds.' % (time.time() - start_time))
+        
+        return orders
+    else:
+        print('There are no '+orders_type+' in the DB...')
+        return 'There are no '+orders_type+' in the DB...'
 def get_TEL_buy_save():
     """
     Performs a DB call to check when last buy orders update occured.
     """
-    cursor = collection_name2.find({"buy_orders":{"$ne":"null"}}, {"_id"}).limit(1)
-    if cursor.retrieved == 0:
+    cursor = list(collection_name2.find({"buy_orders": {"$exists": True}}).limit(1))
+    
+    if len(cursor)==0:
         return "DB is empty"
     else:
         id = str(cursor[0]['_id'])
@@ -51,14 +55,15 @@ def get_TEL_buy_save():
         humanReadableDate = strftime('%Y-%m-%d %H:%M:%S', date)
 
         return humanReadableDate
+   
 
 def get_TEL_sell_save():
     """
     Performs a DB call to check when last sell orders update occured.
     """
-    cursor = collection_name2.find({"sell_orders": 1}, {"_id"}).limit(1)
+    cursor = list(collection_name2.find({"sell_orders": {"$exists": True}}, {"_id"}).limit(1))
     
-    if cursor.retrieved == 0:
+    if len(cursor)==0:
         return "DB is empty"
     else:
         id = str(cursor[0]['_id'])
