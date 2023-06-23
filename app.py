@@ -1,9 +1,8 @@
-
+from globals import getState, setStateTrue
 from controllers.get_records import get_orders_blob, get_TEL_sell_save, get_TEL_buy_save
 from routes.api_routes import api
 from flask import Flask, jsonify
 from flask import render_template
-globals()['isRunning'] = False
 app = Flask(__name__)
 app.register_blueprint(api, url_prefix='/api')
 
@@ -38,20 +37,3 @@ def buy_orders():
 
 
 # testing
-
-@app.route('/test/blob-read')
-def testingBlobRead():
-
-    buyOrdersBlob = get_orders_blob("buy_orders")
-    return jsonify(buyOrdersBlob)
-@app.route('/test-global')
-def testingglobal():
-
-    globals()['isRunning'] = True
-    return jsonify("OK")
-
-@app.route('/test-global-read')
-def testingGlobalRead():
-
-    state = globals()['isRunning']
-    return jsonify(state)
