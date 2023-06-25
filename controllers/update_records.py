@@ -6,9 +6,10 @@ sys.path.append('../db')
 dbname = get_database()
 collection_name1 = dbname["Items"]
 collection_name2 = dbname["Orders"]
+collection_name3 = dbname["Materials"]
 result = []
 
-def update_orders_blob(orders:list, orders_type:str):
+def updateOrdersBlob(orders:list, orders_type:str):
     """
     orders: List of pages with orders from ESI. \n
     orders_type: String defining type of orders to update. Must be either "buy_orders" or "sell_orders".
@@ -29,3 +30,6 @@ def update_orders_blob(orders:list, orders_type:str):
       return "Inserted " +str(len(inserted))+ " pages."
     else:
         raise ValueError('Parameters received have wrong type, expected list, str, got '+ str(type(orders))+', '+ str(type(orders_type)))
+
+
+

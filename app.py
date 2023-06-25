@@ -1,10 +1,11 @@
-from globals import getState, setStateTrue
-from controllers.get_records import get_orders_blob, get_TEL_sell_save, get_TEL_buy_save
+
+from controllers.get_records import getTELSellSave, getTELBuySave
 from routes.api_routes import api
-from flask import Flask, jsonify
+from flask import Flask
 from flask import render_template
 app = Flask(__name__)
 app.register_blueprint(api, url_prefix='/api')
+
 
 
 
@@ -23,8 +24,8 @@ def about():
 
 @app.route('/salvager')
 def salvager():
-    TELBuyUpdate =  get_TEL_buy_save()
-    TELLSellUpdate = get_TEL_sell_save()
+    TELBuyUpdate = getTELBuySave()
+    TELLSellUpdate = getTELSellSave()
     
     return render_template('salvage.html', title='Eve Hobo | Salvager',TELBuyUpdate= TELBuyUpdate, TELLSellUpdate=TELLSellUpdate )
 
