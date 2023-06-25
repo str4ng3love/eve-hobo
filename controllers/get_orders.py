@@ -4,7 +4,7 @@ import requests
 import time
 
 
-def get_pages(orders_type:str):
+def getPages(orders_type:str):
     """
     orders_type: Specify the kind of orders to be downloaded. Must be str, either "buy" or "sell"
     """
