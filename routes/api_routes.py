@@ -12,6 +12,7 @@ api.register_blueprint(items, url_prefix="/items")
 api.register_blueprint(mats, url_prefix="/materials")
 
 
+
 @api.route("/")
 def showRoutes():
     routes = {
@@ -22,12 +23,12 @@ def showRoutes():
         "routes": [
              {
                 "name": "Update buy orders.",
-                 "description": "Updates buy orders DB to current ESI data. May take some time, can't run until 30 minutes passes since last update.",
+                 "description": "Updates buy orders DB to current ESI data. May take some time, can't run until 30 minutes have passed since last update.",
                  "route": "/esi-update-buy-orders",
              },
             {
                  "name": "Update sell orders.",
-                "description": "Updates sell orders DB to current ESI data. May take some time, can't run until 30 minutes passes since last update.",
+                "description": "Updates sell orders DB to current ESI data. May take some time, can't run until 30 minutes have passed since last update.",
                 "route": "/esi-update-sell-orders",
              },
             {
@@ -93,26 +94,26 @@ def updateBuyOrders():
     if request.method == 'GET':
         isRunning = getState()
         if isRunning == True:
-            return "DB is updating, please wait..."
+            return {"message":"DB is updating, please wait..."}
         else:
             setStateTrue()
-            limit = 30
+            limit = 60
             time = getTELBuySave()
             if "DB" in time:
                 buyOrders = getPages("buy")
                 result = updateOrdersBlob(buyOrders, "buy_orders")
                 setStateFalse()
-                return result
+                return jsonify(result)
             else:
                 timediff = timeSinceInput(time, limit)
                 if timediff['evaluation'] == False:
                     setStateFalse()
-                    return jsonify("Too early to update, "+str(limit)+" minutes must pass since last update. Last update was "+timediff['time'] + ' ago.')
+                    return jsonify({"error":"Too early to update, "+str(limit)+" minutes must pass since last update. Last update was "+timediff['time'] + ' ago.'})
                 else:
                     buyOrders = getPages("buy")
                     result = updateOrdersBlob(buyOrders, "buy_orders")
                     setStateFalse()
-                    return result
+                    return jsonify(result)
 
     else:
         return "Bad request!", 401
@@ -123,7 +124,7 @@ def updateSellOrders():
     if request.method == 'GET':
         isRunning = getState()
         if isRunning == True:
-            return "DB is updating, please wait..."
+            return {"message":"DB is updating, please wait..."}
         else:
             setStateTrue()
             limit = 30
@@ -137,7 +138,7 @@ def updateSellOrders():
                 timediff = timeSinceInput(time, limit)
                 if timediff['evaluation'] == False:
                     setStateFalse()
-                    return jsonify("Too early to update, "+str(limit)+" minutes must pass since last update. Last update was "+timediff['time'] + ' ago.')
+                    return jsonify({"error":"Too early to update, "+str(limit)+" minutes must pass since last update. Last update was "+timediff['time'] + ' ago.'})
                 else:
                     sellOrders = getPages("sell")
                     result = updateOrdersBlob(sellOrders, "sell_orders")

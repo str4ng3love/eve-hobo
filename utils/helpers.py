@@ -1,6 +1,6 @@
-import time
+
 import datetime 
-from datetime import timedelta
+
 def filter_jita44(order):
     stationId = 60003760
     if order['location_id'] == stationId:

@@ -1,35 +1,122 @@
 .salvager {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 .buttons-container {
-    display: flex;
-    justify-content: space-evenly;
-    background-color: var(--bg);
-    
+  display: flex;
+  justify-content: space-evenly;
+  background-color: var(--bg);
 }
 .TELUpdate {
-    display: flex;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--dark);
+  color: var(--light);
+  padding: 1rem;
+}
+.db-controls {
+  margin: 2rem 0rem;
+  background-image: url(/static/images/hobo.jpeg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 15rem;
+  background-clip: border-box;
+  min-height: 20rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.db-controls > .buy,
+.sell {
+  max-height: 10rem;
+  background: var(--dark);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.db-controls > .buy {
+  transition: all 200ms;
+  transform: skew(3deg, 3deg);
+  box-shadow: -0.5rem 0.5rem 1rem var(--dark);
+}
+.db-controls > .sell {
+  transition: all 200ms;
+  transform: skew(-3deg, -3deg);
+  box-shadow: 0.5rem 0.5rem 1rem var(--dark);
+}
+.db-controls .btn {
+  width: max-content;
+}
+.salvager-panel {
+  box-shadow: 0rem 0rem 1rem var(--dark);
+  display: flex;
+  justify-content: center;
+  padding: 5rem 0rem;
+
+  background-image: linear-gradient(
+      45deg,
+      var(--colorArrowsB) 0.5rem,
+      transparent 0.5rem
+    ),
+    linear-gradient(-45deg, var(--colorArrowsA) 0.25rem, transparent 0.5rem),
+    linear-gradient(135deg, var(--colorArrowsB) 0.5rem, transparent 0.5rem),
+    linear-gradient(-135deg, var(--colorArrowsA) 0.25rem, transparent 0.5rem);
+  background-position: 2.5rem 5rem, 5rem 2.5rem, 2.5rem 5rem, 5rem 2.5rem;
+  background-size: 5rem 5rem;
+  background-repeat: repeat;
+  background-attachment: fixed;
+}
+.salvager-panel * {
+  color: var(--light);
+}
+.panel-item {
+  background-color: var(--darkA);
+  padding: 1rem;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-items: center;
+  width: fit-content;
+}
+
+.panel-item .small-heading {
+  font-size: 1.2rem;
+  text-align: center;
+  padding: 1rem 0rem;
+} 
+.panel-item .fields {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+.panel-item .fields > * {
+  padding: 1rem;
+}
+.panel-item .fields select, .panel-item .fields option, .panel-item .fields input  {
+    color:var(--dark);
+  }
+@media screen and (max-width: 800px) {
+  .db-controls .buy,
+  .db-controls .sell {
+    transform: skew(0deg, 0deg);
+    margin-bottom: 1em;
+    font-size: 0.875rem;
+    box-shadow: 0rem 0.5rem 1rem var(--dark);
+  }
+  .db-controls {
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    background-color: var(--dark);
-    color: var(--light);
-    padding: 1rem;
-}
-.db_controls {
-    background-color: var(--bg);
-    display:  flex;
-    flex-direction: row;
-    justify-content: center;
-}
-.db_controls > .buy, .sell {
-    background: var(--dark);
-    padding: 1rem;
-    display: flex;
+    justify-content: space-around;
+    background-image: none;
+  }
+  .salvager-panel {
     flex-direction: column;
     align-items: center;
-}
-.db_controls .btn {
-    width: max-content;
+  }
 }
