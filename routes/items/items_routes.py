@@ -1,12 +1,12 @@
 from flask import Blueprint, jsonify
-from controllers.get_records import getItemsList, getItemsByString, getItemByTypeId
+from controllers.get_records import getItems, getItemsByString, getItemByTypeId
 items = Blueprint('items', __name__)
 
 
 @items.route("/")
 def getItems():
 
-    return jsonify(getItemsList())
+    return jsonify(getItems())
 
 
 @items.route("/<name>")

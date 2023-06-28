@@ -20,4 +20,4 @@ App aims to scan Eve Online markets for items suitable for reprocessing.
 ### Running server
 
 You can start developement server with :
-> flask --app app run
+> flask --app app --debug run

@@ -109,7 +109,7 @@ def getMaterialsByString(string: str):
         return {"error": "Invalid string:str"}
 
 
-def getItemsList():
+def getItems():
     """
         Returns a list of items.
     """

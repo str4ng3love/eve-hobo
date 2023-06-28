@@ -1,5 +1,6 @@
 from db.pymongo_get_db import get_database
 import sys
+import time
 
 sys.path.append('../db')
 
@@ -21,13 +22,14 @@ def updateOrdersBlob(orders:list, orders_type:str):
       print('Updating '+orders_type+' blob...')
       inserted = []
       ordersAmount = len(orders)
+      start_time = time.time()
       for o in orders:
         cursor = collection_name2.insert_one({orders_type: o})
         inserted.append(cursor.inserted_id)
         print(str(ordersAmount) +" remaining pages to insert.")
         ordersAmount -= 1
-      print("Done inserting documents.")
-      return "Inserted " +str(len(inserted))+ " pages."
+      print("Done inserting documents in --- %s seconds ---" % (time.time() - start_time))
+      return {"message":"Inserted " +str(len(inserted))+ " pages."}
     else:
         raise ValueError('Parameters received have wrong type, expected list, str, got '+ str(type(orders))+', '+ str(type(orders_type)))
 

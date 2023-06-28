@@ -1,22 +1,49 @@
 {% extends 'layout.html' %} {% block content %}
 
 <section class="salvager">
-    <div class="db_controls">
-        <div class="buy">
+  <div class="db-controls">
+    <div class="buy">
       <div class="TELUpdate">
         <span>Buy Orders Last Update :</span>
         <span>{{ TELBuyUpdate }}</span>
+      </div>
+      <div id="update-buy" class="btn">Update Buy Orders</div>
     </div>
-    <div id="update-buy" class="btn">Update Buy Orders</div>
-</div>
-<div class="sell">
-    <div class="TELUpdate">
+    <div class="sell">
+      <div class="TELUpdate">
         <span>Sell Orders Last Update :</span>
         <span>{{ TELLSellUpdate }}</span>
+      </div>
+      <div id="update-sell" class="btn">Update Sell Orders</div>
     </div>
-    <div id="update-sell" class="btn">Update Sell Orders</div>
-</div>
-</div>
-
+  </div>
+  <div class="salvager-panel">
+    <form action="/reprocess-buy" method="post" class="panel-item">
+      <h4 class="small-heading">Buy Orders</h4>
+      <div class="fields">
+        <label for="search-by">Search by :</label>
+        <select name="search-by">
+          <option value="percentage" selected>Percentage %</option>
+          <option value="isk">Amount of ISK</option> 
+        </select>
+        <label for="amount">Value :</label>
+        <input name="amount" type="number" id="buy-input" value="0" min="1" oninput="this.value=Math.abs(this.value)"/>
+      </div>
+      <button class="btn" type="submit" id="repro-buy">submit</button>
+    </form>
+    <form action="/reprocess-sell" method="post" class="panel-item">
+        <h4 class="small-heading">Sell Orders</h4>
+        <div class="fields">
+          <label name="search-by">Search by :</label>
+          <select name="search-by">
+            <option value="" selected>Percentage %</option>
+            <option value="">Amount of ISK</option>
+          </select>
+          <label for="amount">Value :</label>
+          <input name="amount" type="number" id="sell-input" value="0" min="1" oninput="this.value=Math.abs(this.value)"/>
+        </div>
+        <button class="btn" type="submit" id="repro-sell">submit</BUTTON>
+      </div>
+  </form>
 </section>
 {% endblock %}

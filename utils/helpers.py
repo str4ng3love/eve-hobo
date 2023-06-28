@@ -1,12 +1,22 @@
-import time
-import datetime 
-from datetime import timedelta
+
+import datetime
+
+
 def filter_jita44(order):
-    stationId = 60003760
+    stationId =60003760
     if order['location_id'] == stationId:
         return True
     else:
         return False
+    
+def filter_amarr_oris(order):
+    stationId =60008494
+    if order['location_id'] == stationId:
+        return True
+    else:
+        return False
+
+
 
 def concat(listOfLists: list):
     result = []
@@ -15,40 +25,43 @@ def concat(listOfLists: list):
             result = result + l
     return result
 
+
 def concatSameTypeIDs(orders):
     sortedOrders = []
     newArray = []
 
-   
     for o in orders:
         if len(newArray) == 0:
             newArray.append(o)
-           
-           
+
         elif newArray[-1]['type_id'] == o['type_id']:
-            newArray.append(o) 
+            newArray.append(o)
         else:
             sortedOrders.append(newArray)
             newArray = []
             newArray.append(o)
-          
-            
+
     return sortedOrders
 
-def sortByPriceAsc(orders:list):
 
-    orders.sort(key=lambda k:k['price'])
-    return orders
-def sortByPriceDesc(orders:list):
-
-    orders.sort(key=lambda k:k['price'], reverse=True)
-    return orders
-def sortByTypeID(orders:list):
-    orders = sorted(orders, key=lambda k:k['type_id'])
-
+def sortByPriceAsc(orders: list):
+    
+    orders.sort(key=lambda k: k['price'])
     return orders
 
-def timeSinceInput(timeInput:str, evalValue:int = None ):
+
+def sortByPriceDesc(orders: list):
+    orders.sort(key=lambda k: k['price'], reverse=True)
+    return orders
+
+
+def sortByTypeID(orders: list):
+    orders = sorted(orders, key=lambda k: k['type_id'])
+
+    return orders
+
+
+def timeSinceInput(timeInput: str, evalValue: int = None):
     """
     Takes ISO formated date and returns difference since datetime.datetime.now() in 'X days, X hours, X minutes, X secs.
     Optional: evalValue takes a value in minutes, and checks whether specified amount have passed since timeInput.
@@ -60,34 +73,12 @@ def timeSinceInput(timeInput:str, evalValue:int = None ):
     hours = days * 24 + seconds // 3600
     minutes = (seconds % 3600) // 60
     seconds = minutes % 60
-    if evalValue !=None:
+    if evalValue != None:
 
         if evalValue * 60 < diff.seconds:
             evaluation = True
         else:
             evaluation = False
-        return {'time':'{} days, {} hours, {} minutes, {} seconds '.format(days, hours, minutes, hours), "evaluation": evaluation}
+        return {'time': '{} days, {} hours, {} minutes, {} seconds '.format(days, hours, minutes, hours), "evaluation": evaluation}
     else:
-        return {'time':'{} days, {} hours, {} minutes, {} seconds '.format(days, hours, minutes, hours)}
-# def concatSameTypeIDs(orders):
-#     sortedOrders = []
-#     sortedIndex = 0
-   
-#     for o in orders:
-#         if len(sortedOrders) == 0:
-#             newEntry = {}
-#             newEntry['type_id'] =  o['type_id']
-#             newEntry['orders'] = [o]
-#             sortedOrders.append(newEntry)
-         
-           
-#         elif sortedOrders[sortedIndex]['type_id'] == o['type_id']:
-#             sortedOrders[sortedIndex]['orders'].append(o) 
-#         else:
-#             newEntry = {}
-#             newEntry['type_id'] =  o['type_id']
-#             newEntry['orders'] = [o]
-#             sortedOrders.append(newEntry)
-#             sortedIndex +=1
-            
-#     return sortedOrders
+        return {'time': '{} days, {} hours, {} minutes, {} seconds '.format(days, hours, minutes, hours)}
