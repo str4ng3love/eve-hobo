@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify
-from controllers.get_records import getItems, getItemsByString, getItemByTypeId
+from controllers.get_records import getItems, getItemsByString, getItemByTypeId, getItemsReprocessable
 items = Blueprint('items', __name__)
 
 
@@ -7,6 +7,11 @@ items = Blueprint('items', __name__)
 def getItems():
 
     return jsonify(getItems())
+
+
+@items.route("/reprocessable")
+def getRepocesable():
+    return jsonify(getItemsReprocessable())
 
 
 @items.route("/<name>")

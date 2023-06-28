@@ -95,7 +95,7 @@ def getMaterialsByString(string: str):
     """
         Returns a list of materials with names containing string:str.
     """
-    # if name 
+    # if name
     regex = "[A-Za-z0-9._()'$%!:]"
     if re.match(regex, string):
         cursor = list(collection_name3.find(
@@ -105,9 +105,8 @@ def getMaterialsByString(string: str):
             return {"error": "No entry associated with string: " + str(string)}
         else:
             return cursor
-    else: 
+    else:
         return {"error": "Invalid string:str"}
-
 
 def getItems():
     """
@@ -116,6 +115,18 @@ def getItems():
     cursor = list(collection_name1.find({}, {"_id": 0}))
 
     return cursor
+
+
+def getItemsReprocessable():
+    """
+        Returns a list of reprocessable items.
+    """
+
+    cursor = list(collection_name1.find(
+        {"reprocess": {"$exists": True}}, {"_id": 0}))
+
+    return cursor
+
 
 def getItemByTypeId(type_id: int):
     """
@@ -142,5 +153,5 @@ def getItemsByString(string: str):
             return {"error": "No entry associated with string: " + str(string)}
         else:
             return cursor
-    else: 
+    else:
         return {"error": "Invalid string:str"}

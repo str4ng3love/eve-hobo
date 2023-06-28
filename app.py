@@ -1,5 +1,5 @@
 
-from controllers.get_records import getTELSellSave, getTELBuySave
+from controllers.get_records import getTELSellSave, getTELBuySave, getItemsReprocessable, getOrdersBlob
 from controllers.handleRequests import get_filtered_and_sorted_orders
 from routes.api_routes import api
 from flask import Flask, jsonify, request
@@ -31,8 +31,10 @@ def salvager():
 @app.route('/reprocess-buy',  methods=["GET", "POST"])
 def reprocess_buy():
     if request.method == "POST":
+        baseReprocessReturn = 0.5
         searchBy = request.form['search-by']
         amount = request.form['amount']
+
         orders = get_filtered_and_sorted_orders('buy_orders')
 
         return jsonify(orders)
@@ -45,17 +47,17 @@ def reprocess_sell():
     if request.method == "POST":
         searchBy = request.form['search-by']
         amount = request.form['amount']
-        orders = get_filtered_and_sorted_orders('sell_orders')
+        orders = get_filtered_and_sorted_orders('buy_orders')
 
         return jsonify(orders)
     else:
         return jsonify({'error': 'Bad request.'}, 400)
 
 
-@app.route('/buy_orders')
-def buy_orders():
-
-    return render_template('buy_orders.html', title='Eve Hobo | Buy Orders')
+# @app.route('/repro')
+# def reprocess():
 
 
-# testing
+#     return jsonify(reprocessed)
+
+# # testing

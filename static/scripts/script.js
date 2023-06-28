@@ -15,18 +15,18 @@ const reproSell = document.getElementById("repro-sell");
 
 // //      Event Listeners
 
-// buyUpdate
-//   ? buyUpdate.addEventListener("click", async (e) => {
-//       let resp = await UpdateBuyOrders(e);
-//       ShowMessage(resp);
-//     })
-//   : null;
-// sellUpdate
-//   ? sellUpdate.addEventListener("click", async (e) => {
-//       let resp = await UpdateSellOrders(e);
-//       ShowMessage(resp);
-//     })
-//   : null;
+buyUpdate
+  ? buyUpdate.addEventListener("click", async (e) => {
+      let resp = await UpdateBuyOrders(e);
+      ShowMessage(resp);
+    })
+  : null;
+sellUpdate
+  ? sellUpdate.addEventListener("click", async (e) => {
+      let resp = await UpdateSellOrders(e);
+      ShowMessage(resp);
+    })
+  : null;
 // reproBuy
 //   ? reproBuy.addEventListener("click", async (e) => {
 //       const searchBy = e.target.parentElement.children[1].children[1].value;

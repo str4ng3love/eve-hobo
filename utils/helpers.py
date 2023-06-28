@@ -82,3 +82,4 @@ def timeSinceInput(timeInput: str, evalValue: int = None):
         return {'time': '{} days, {} hours, {} minutes, {} seconds '.format(days, hours, minutes, hours), "evaluation": evaluation}
     else:
         return {'time': '{} days, {} hours, {} minutes, {} seconds '.format(days, hours, minutes, hours)}
+

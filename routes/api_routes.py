@@ -71,6 +71,11 @@ def showRoutes():
                 "description": "Displays items used in industry.",
                 "route": "/items",
              },
+              {
+                 "name": "Get reprocessable items.",
+                "description": "Displays items used in industry that can be reprocessed.",
+                "route": "/items/reprocessable",
+             },
             {
                  "name": "Get items by name.",
                 "description": "Takes a string:str(case insensitive) and returns a list of items that contain string:str in their names.",
@@ -97,7 +102,7 @@ def updateBuyOrders():
             return {"message":"DB is updating, please wait..."}
         else:
             setStateTrue()
-            limit = 60
+            limit = 0
             time = getTELBuySave()
             if "DB" in time:
                 buyOrders = getPages("buy")
