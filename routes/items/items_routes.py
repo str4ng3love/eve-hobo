@@ -4,7 +4,7 @@ items = Blueprint('items', __name__)
 
 
 @items.route("/")
-def getItems():
+def getItemsList():
 
     return jsonify(getItems())
 

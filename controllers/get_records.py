@@ -9,6 +9,7 @@ dbname = get_database()
 collection_name1 = dbname["Items"]
 collection_name2 = dbname["Orders"]
 collection_name3 = dbname["Materials"]
+collection_name4 = dbname["MatsOrders"]
 result = []
 
 
@@ -108,6 +109,7 @@ def getMaterialsByString(string: str):
     else:
         return {"error": "Invalid string:str"}
 
+
 def getItems():
     """
         Returns a list of items.
@@ -116,6 +118,30 @@ def getItems():
 
     return cursor
 
+def getMatsBuyPrice():
+    """
+        Returns a list of materials with their current highest buy market price.
+    """
+    cursor = list(collection_name4.find(
+        {"buy_orders": {"$exists": True}}, {"_id": 0}))
+    orders = []
+    for c in cursor:
+      
+        orders.append(c['buy_orders'])
+    return orders
+
+
+def getMatsSellPrice():
+    """
+        Returns a list of materials with their current lowest sell market price.
+    """
+    cursor = list(collection_name4.find(
+        {"sell_orders": {"$exists": True}}, {"_id": 0}))
+    orders = []
+    for c in cursor:
+      
+        orders.append(c['sell_orders'])
+    return orders
 
 def getItemsReprocessable():
     """
@@ -155,3 +181,5 @@ def getItemsByString(string: str):
             return cursor
     else:
         return {"error": "Invalid string:str"}
+
+

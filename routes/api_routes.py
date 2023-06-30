@@ -102,7 +102,7 @@ def updateBuyOrders():
             return {"message":"DB is updating, please wait..."}
         else:
             setStateTrue()
-            limit = 0
+            limit = 30
             time = getTELBuySave()
             if "DB" in time:
                 buyOrders = getPages("buy")
