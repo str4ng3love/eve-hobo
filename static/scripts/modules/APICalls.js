@@ -18,3 +18,10 @@ export async function GetSellOrdersReprocess() {
   const data = await resp.json();
   return data;
 }
+export async function GetOrders(orders_type) {
+  let resp = await fetch(`/api/get-filtered-and-sorted/${orders_type}`, {
+  });
+
+  let data = await resp.json();
+  return data;
+}

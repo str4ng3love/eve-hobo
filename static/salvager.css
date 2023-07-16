@@ -2,62 +2,31 @@
   display: flex;
   flex-direction: column;
 }
-.buttons-container {
-  display: flex;
-  justify-content: space-evenly;
-  background-color: var(--bg);
-}
-.TELUpdate {
+.switcher {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  position: relative;
+  height: calc(100vh - var(--headerH));
+  height: calc(100dvh - var(--headerH));
+}
+.switcher .buttons{
+  display: flex;
   background-color: var(--dark);
-  color: var(--light);
-  padding: 1rem;
+  z-index: 1000;
 }
-.db-controls {
-  margin: 2rem 0rem;
-  background-image: url(/static/images/hobo.jpeg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 15rem;
-  background-clip: border-box;
-  min-height: 20rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-}
-.db-controls > .buy,
-.sell {
-  max-height: 10rem;
-  background: var(--dark);
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.db-controls > .buy {
-  transition: all 200ms;
-  transform: skew(3deg, 3deg);
-  box-shadow: -0.5rem 0.5rem 1rem var(--dark);
-}
-.db-controls > .sell {
-  transition: all 200ms;
-  transform: skew(-3deg, -3deg);
-  box-shadow: 0.5rem 0.5rem 1rem var(--dark);
-}
-.db-controls .btn {
-  width: max-content;
+.switcher >.buttons > div {
+  margin: 0rem 0.25rem;
 }
 .salvager-panel {
+  z-index: 10;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
   box-shadow: 0rem 0rem 1rem var(--dark);
   display: flex;
   justify-content: center;
   padding: 5rem 0rem;
-
   background-image: linear-gradient(
       45deg,
       var(--colorArrowsB) 0.5rem,
@@ -70,9 +39,11 @@
   background-size: 5rem 5rem;
   background-repeat: repeat;
   background-attachment: fixed;
+  background-color: var(--light);
 }
 .salvager-panel * {
   color: var(--light);
+
 }
 .panel-item {
   background-color: var(--darkA);
@@ -97,26 +68,41 @@
 }
 .panel-item .fields > * {
   padding: 1rem;
+  width: 15rem;
 }
 .panel-item .fields select, .panel-item .fields option, .panel-item .fields input  {
     color:var(--dark);
   }
+
+.results-panel {
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+  padding: 5rem 0rem;
+  background-color: var(--darkA);
+  color: var(--light);
+  display: flex;
+  justify-content: center;
+}
+.results-board {
+  width: 80%;
+  background-color: var(--dark);
+  min-height:100%;
+  padding: 1rem;
+}
+.legend {
+  display: flex;
+
+}
 @media screen and (max-width: 800px) {
-  .db-controls .buy,
-  .db-controls .sell {
-    transform: skew(0deg, 0deg);
-    margin-bottom: 1em;
-    font-size: 0.875rem;
-    box-shadow: 0rem 0.5rem 1rem var(--dark);
+
+  .switcher .buttons{
+    justify-content: center;
+ 
   }
-  .db-controls {
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    background-image: none;
-  }
-  .salvager-panel {
-    flex-direction: column;
-    align-items: center;
+  .results-board {
+    width: 100%;
   }
 }
