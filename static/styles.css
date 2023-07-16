@@ -5,6 +5,7 @@
   --light: rgb(235, 235, 235);
   --bg: rgb(51, 51, 51);
   --footerH: 5rem;
+  --headerH: 5rem;
   --colorArrowsA: rgb(43, 43, 43);
   --colorArrowsB: rgb(156, 156, 156);
 }
@@ -22,7 +23,9 @@ html {
   margin: 0;
   padding: 0;
 }
-
+.top {
+  z-index: 100 !important;
+}
 main .salvager {
   padding-bottom: var(--footerH);
 
@@ -45,6 +48,7 @@ body {
   color: var(--dark);
 }
 header {
+  height: var(--headerH);
   z-index: 10;
   box-shadow: 0rem 0rem 1rem var(--dark);
 }
@@ -114,7 +118,7 @@ footer div {
   left: 2.5rem;
   max-width: 500px;
   transition: all 500ms;
-  z-index: 10;
+  z-index: 10000 !important;
   box-shadow: 0rem 0rem 1rem var(--dark);
 }
 .notifications-container p {

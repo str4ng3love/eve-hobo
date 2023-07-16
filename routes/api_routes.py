@@ -7,6 +7,7 @@ from routes.materials.material_routes import mats
 from controllers.get_orders import getPages
 from controllers.get_records import getOrdersBlob, getTELBuySave, getTELSellSave
 from controllers.update_records import updateOrdersBlob
+from controllers.utilities import get_filtered_and_sorted_orders
 api = Blueprint('api', __name__)
 api.register_blueprint(items, url_prefix="/items")
 api.register_blueprint(mats, url_prefix="/materials")
@@ -17,7 +18,7 @@ api.register_blueprint(mats, url_prefix="/materials")
 def showRoutes():
     routes = {
         "name": "Eve-Hobo API v_0.1",
-        "roo-route": "https://eve-hobo.onrender.com/api",
+        "root-route": "https://eve-hobo.onrender.com/api",
         "description": "Displays current api routes. Usage: root-route + route. For instance: to get information on the Enyo by type_id, hit https://eve-hobo.onrender.com/api/items/type/12044",
 
         "routes": [
@@ -179,3 +180,11 @@ def TELBuyUpdate():
 def TELSellUpdate():
     time = getTELSellSave()
     return jsonify("Sell orders last updated: "+time)
+
+@api.route('/get-filtered-and-sorted/<orders_type>')
+def getFilteredAndSorted(orders_type):
+    if orders_type == 'buy_orders' or orders_type == 'sell_orders':
+        data = get_filtered_and_sorted_orders(orders_type)
+        return jsonify(data)
+    else:
+        return jsonify({'error':'Bad request. <orders_type> should be either buy_orders or sell_orders'}, 400)

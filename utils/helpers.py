@@ -73,12 +73,14 @@ def timeSinceInput(timeInput: str, evalValue: int = None):
     hours = days * 24 + seconds // 3600
     minutes = (seconds % 3600) // 60
     seconds = minutes % 60
+
     if evalValue != None:
 
-        if evalValue * 60 < diff.seconds:
+        if evalValue * 60 < diff.seconds or hours > 0 or days > 0:
             evaluation = True
         else:
             evaluation = False
+
         return {'time': '{} days, {} hours, {} minutes, {} seconds '.format(days, hours, minutes, hours), "evaluation": evaluation}
     else:
         return {'time': '{} days, {} hours, {} minutes, {} seconds '.format(days, hours, minutes, hours)}

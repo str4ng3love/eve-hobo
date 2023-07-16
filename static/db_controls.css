@@ -1,0 +1,61 @@
+.db-controls {
+    margin: 2rem 0rem;
+    background-image: url(/static/images/hobo.jpeg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 15rem;
+    background-clip: border-box;
+    min-height: 20rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  .db-controls > .buy,
+  .sell {
+    max-height: 10rem;
+    background: var(--dark);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .db-controls > .buy {
+    transition: all 200ms;
+    transform: skew(3deg, 3deg);
+    box-shadow: -0.5rem 0.5rem 1rem var(--dark);
+  }
+  .db-controls > .sell {
+    transition: all 200ms;
+    transform: skew(-3deg, -3deg);
+    box-shadow: 0.5rem 0.5rem 1rem var(--dark);
+  }
+  .db-controls .btn {
+    width: max-content;
+  }
+  .TELUpdate {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--dark);
+    color: var(--light);
+    padding: 1rem;
+  }
+
+  @media screen and (max-width: 800px) {
+    .db-controls .buy,
+    .db-controls .sell {
+      transform: skew(0deg, 0deg);
+      margin-bottom: 1em;
+      font-size: 0.875rem;
+      box-shadow: 0rem 0.5rem 1rem var(--dark);
+    }
+    .db-controls {
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      background-image: none;
+    }
+  }
